@@ -1,36 +1,56 @@
-import React from 'react';
-import Link from 'next/link';
+"use client";
 
-export default function HomePage() {
+import React from 'react';
+import BusinessSummary from '../../components/dashboard/BusinessSummary';
+import DailyPerformance from '../../components/dashboard/DailyPerformance';
+import InventoryStatus from '../../components/dashboard/InventoryStatus';
+import RecentTransactions from '../../components/dashboard/RecentTransactions';
+import ActiveEvents from '../../components/dashboard/ActiveEvents';
+import CustomerTraffic from '../../components/dashboard/CustomerTraffic';
+import WeatherForecast from '../../components/dashboard/WeatherForecast';
+
+export default function DashboardPage() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-      <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-6">
-        <h1 className="text-3xl font-bold text-center text-blue-600 mb-6">
-          Food Cart Management Simulation
-        </h1>
-        
-        <p className="text-gray-600 mb-8 text-center">
-          An educational simulation for learning business management principles through operating a virtual food cart.
-        </p>
-        
-        <div className="space-y-4">
-          <Link href="/dashboard" className="block w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded text-center">
-            Start New Game
-          </Link>
-          
-          <button className="block w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded text-center">
-            Load Saved Game
-          </button>
-          
-          <Link href="/testing" className="block w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded text-center">
-            Testing Mode
-          </Link>
+    <div className="p-4">
+      <h1 className="text-2xl font-bold mb-6">Food Cart Dashboard</h1>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {/* Top row */}
+        <div className="col-span-1 md:col-span-2 lg:col-span-2">
+          <BusinessSummary />
+        </div>
+        <div className="col-span-1">
+          <WeatherForecast />
         </div>
         
-        <div className="mt-8 text-sm text-gray-500 text-center">
-          <p>Developed for Manning management students</p>
-          <p>Version 1.0.0</p>
+        {/* Middle row */}
+        <div className="col-span-1 md:col-span-1 lg:col-span-1">
+          <CustomerTraffic />
         </div>
+        <div className="col-span-1 md:col-span-1 lg:col-span-1">
+          <InventoryStatus />
+        </div>
+        <div className="col-span-1 md:col-span-1 lg:col-span-1">
+          <ActiveEvents />
+        </div>
+        
+        {/* Bottom row */}
+        <div className="col-span-1 md:col-span-2 lg:col-span-2">
+          <DailyPerformance />
+        </div>
+        <div className="col-span-1">
+          <RecentTransactions />
+        </div>
+      </div>
+      
+      <div className="mt-6 flex justify-between">
+        <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded">
+          Run Business (1 Hour)
+        </button>
+        
+        <button className="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded">
+          End Day
+        </button>
       </div>
     </div>
   );
